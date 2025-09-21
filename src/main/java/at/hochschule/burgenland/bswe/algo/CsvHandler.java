@@ -45,7 +45,6 @@ public class CsvHandler {
                     }
                 }
             }
-
             return sudokuBoard;
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -78,6 +77,5 @@ public class CsvHandler {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        throw new UnsupportedOperationException("Not yet implemented");
     }
 }

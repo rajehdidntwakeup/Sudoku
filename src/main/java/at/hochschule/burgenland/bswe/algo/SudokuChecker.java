@@ -91,16 +91,16 @@ public class SudokuChecker {
     public static boolean isValid(int[][] sudoku, int row, int col, int num,
                                int sudokuSize, int subSudokuSize) {
         for (int i = 0; i < sudokuSize; i++) {
-            if (sudoku[row][i] == num) return false;
+            if (sudoku[row][i] == num && i != col) return false;
         }
         for (int i = 0; i < sudokuSize; i++) {
-            if (sudoku[i][col] == num) return false;
+            if (sudoku[i][col] == num && i != row) return false;
         }
         int startRow = (row / subSudokuSize) * subSudokuSize;
         int startCol = (col / subSudokuSize) * subSudokuSize;
         for (int i = startRow; i < startRow + subSudokuSize; i++) {
             for (int j = startCol; j < startCol + subSudokuSize; j++) {
-                if (sudoku[i][j] == num) return false;
+                if (sudoku[i][j] == num && (i != row && j != col)) return false;
             }
         }
         return true;
@@ -126,6 +126,7 @@ public class SudokuChecker {
                 int temp = sudoku[row][col];
                 if (!isValid(sudoku, row, col, temp, sudokuSize, subSudokuSize)) {
                     sudoku[row][col] = temp;
+                    System.out.println("Invalid number " + temp + " in cell " + row + "," + col + "");
                     return false;
                 }
                 sudoku[row][col] = temp;

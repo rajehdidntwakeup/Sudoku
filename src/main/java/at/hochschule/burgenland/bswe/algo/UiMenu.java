@@ -1,5 +1,7 @@
 package at.hochschule.burgenland.bswe.algo;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class UiMenu {
@@ -104,7 +106,6 @@ public class UiMenu {
             currentSudoku = CsvHandler.readCsv(filename);
             System.out.println("Sudoku Board loaded successfully!");
             displaySudokuBoard();
-
         } catch (Exception e) {
             System.out.println("Error loading file: " + e.getMessage());
         }
@@ -262,11 +263,23 @@ public class UiMenu {
         String filename = scanner.nextLine();
         if (filename.trim().isEmpty()) {
             filename = filepath  + "output.csv";
-        } else if (filename.endsWith(".csv")) {
-            filename = filename.substring(0, filename.length() - 4);
+        } else {
+            filename = filepath + filename;
         }
-        filename += ".csv";
-        CsvHandler.writeCsv(currentSudoku, filepath + filename);
+        if (!filename.endsWith(".csv")) {
+            filename += ".csv";
+        }
+        File file = new File(filename);
+        if (!file.exists()) {
+            try {
+                if (file.createNewFile()) {
+                    System.out.println("File created: " + file.getAbsolutePath());
+                }
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        CsvHandler.writeCsv(currentSudoku, filename);
         System.out.println("Sudoku solution saved to file " + filename);
     }
 
