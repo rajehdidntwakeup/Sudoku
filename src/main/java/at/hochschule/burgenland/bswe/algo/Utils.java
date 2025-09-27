@@ -51,7 +51,7 @@ public class Utils {
      */
     private static void printHorizontalLine(int sudokuSize, int subSudokuSize) {
         for (int i = 0; i < sudokuSize + subSudokuSize; i++) {
-            System.out.print("-");
+            System.out.print("--");
         }
         System.out.println();
     }

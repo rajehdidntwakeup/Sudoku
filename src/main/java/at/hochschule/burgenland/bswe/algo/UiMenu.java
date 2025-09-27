@@ -97,10 +97,10 @@ public class UiMenu {
      */
     private void loadSudokuBoardFromCSV() {
         try {
-            System.out.print("Enter CSV filename (default: input.csv): ");
+            System.out.print("Enter CSV filepath (default: src/main/resources/input.csv): ");
             String filename = scanner.nextLine();
             if (filename.trim().isEmpty()) {
-                filename = "input.csv";
+                filename = "src/main/resources/input.csv";
             }
 
             currentSudoku = CsvHandler.readCsv(filename);
@@ -170,7 +170,7 @@ public class UiMenu {
 
             currentSudoku = Utils.createEmptySudokuBoard(sudokuSize);
 
-            System.out.println("Enter the Sudoku board row by row.");
+            System.out.println("Enter the Sudoku board row by row (e.g., 1 2 3 4 5 6 7 8 9).");
             System.out.println("Attention: use 0 for empty cells, and separate numbers with spaces.");
 
             for (int i = 0; i < sudokuSize; i++) {
