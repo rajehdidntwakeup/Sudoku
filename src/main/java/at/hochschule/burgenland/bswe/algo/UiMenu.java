@@ -31,7 +31,7 @@ public class UiMenu {
         boolean exit = false;
          while (!exit) {
              System.out.println("""
-                     \n* Welcome To The Sudoku Checker Menu *
+                     \n#### Welcome To The Sudoku Checker Menu ####
                      Chose an option:
                      1. Load from CSV file
                      2. Enter a Sudoku board manually
