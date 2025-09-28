@@ -8,7 +8,6 @@ public class UiMenu {
 
     private Scanner scanner;
     private int[][] currentSudoku;
-    private String filepath = "src/main/resources/";
 
     public UiMenu() {
         this.scanner = new Scanner(System.in);
@@ -258,18 +257,16 @@ public class UiMenu {
             System.out.println("Sudoku Board is null or empty!");
             return;
         }
-        System.out.print("Enter CSV filename (default: output.csv): ");
+        System.out.print("Enter CSV filename (default: src/main/resources/output.csv): ");
 
-        String filename = scanner.nextLine();
-        if (filename.trim().isEmpty()) {
-            filename = filepath  + "output.csv";
-        } else {
-            filename = filepath + filename;
+        String filepath = scanner.nextLine();
+        if (filepath.trim().isEmpty()) {
+            filepath = "src/main/resources/output.csv";
         }
-        if (!filename.endsWith(".csv")) {
-            filename += ".csv";
+        if (!filepath.endsWith(".csv")) {
+            filepath += ".csv";
         }
-        File file = new File(filename);
+        File file = new File(filepath);
         if (!file.exists()) {
             try {
                 if (file.createNewFile()) {
@@ -279,8 +276,8 @@ public class UiMenu {
                 throw new RuntimeException(e);
             }
         }
-        CsvHandler.writeCsv(currentSudoku, filename);
-        System.out.println("Sudoku solution saved to file " + filename);
+        CsvHandler.writeCsv(currentSudoku, filepath);
+        System.out.println("Sudoku solution saved to file " + filepath);
     }
 
 }
